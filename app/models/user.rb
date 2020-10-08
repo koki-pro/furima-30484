@@ -13,4 +13,6 @@ class User < ApplicationRecord
     validates :birth_day
     validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'is invalid. Input using half-width English numbers and letters, using more than 6 characters' }
   end
+
+  has_many :items
 end
