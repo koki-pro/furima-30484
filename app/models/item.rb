@@ -11,6 +11,7 @@ class Item < ApplicationRecord
   end
   validates :category_id, numericality: { other_than: 1 } 
   validates :condition_id, numericality: { other_than: 1 }
+  validates :postage_payer_id, numericality: { other_than: 1 }
 
   belongs_to :user
   has_one_attached :image
@@ -18,4 +19,5 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
+  belongs_to_active_hash :postage_payer
 end
