@@ -12,6 +12,8 @@ class Item < ApplicationRecord
   validates :category_id, numericality: { other_than: 1 } 
   validates :condition_id, numericality: { other_than: 1 }
   validates :postage_payer_id, numericality: { other_than: 1 }
+  validates :prefecture_code_id, numericality: { other_than: 1 }
+  validates :preparation_day_id, numericality: { other_than: 1 }
 
   belongs_to :user
   has_one_attached :image
@@ -20,4 +22,6 @@ class Item < ApplicationRecord
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
   belongs_to_active_hash :postage_payer
+  belongs_to_active_hash :prefecture_code
+  belongs_to_active_hash :preparation_day
 end
