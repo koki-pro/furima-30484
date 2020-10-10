@@ -8,8 +8,7 @@ class Item < ApplicationRecord
     validates :postage_payer
     validates :prefecture_code
     validates :preparation_day
-    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: 'is invalid. 
-    Input the range of 300 to 9999999 yen.'  }
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: 'is invalid. Input the range of 300 to 9999999 yen.'  }
   end
 
   validates :category_id, numericality: { other_than: 1 } 
