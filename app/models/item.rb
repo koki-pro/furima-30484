@@ -7,7 +7,7 @@ class Item < ApplicationRecord
     validates :postage_payer
     validates :prefecture_code
     validates :preparation_day
-    validates :price 
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   end
 
   validates :category_id, numericality: { other_than: 1 } 
