@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
       it 'nickname,password,email,first_name,last_name,first_name_reading,last_name_reading,birth_dayが存在すれば登録できる' do
         expect(@user).to be_valid
       end
-      
+
       it 'passwordが6文字上で英数混合であれば登録ができる' do
         @user.password = '222bbb'
         @user.password_confirmation = '222bbb'
