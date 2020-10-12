@@ -1,21 +1,25 @@
 class Item < ApplicationRecord
+  hankaku = /\A[0-9]+\z/
+  
   with_options presence: true do
     validates :image
     validates :name
     validates :introduction
     validates :category
     validates :condition
-    validates :postage_payer
+    validates :postage_payer  
     validates :prefecture_code
     validates :preparation_day
-    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: 'is invalid. Input the range of 300 to 9999999 yen.'  }
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: 'is invalid. Input the range of 300 to 9999999 yen.'  }, format: { with: hankaku, message: 'is invalid. Input using half-width English numbers.' }
   end
 
-  validates :category_id, numericality: { other_than: 1 } 
-  validates :condition_id, numericality: { other_than: 1 }
-  validates :postage_payer_id, numericality: { other_than: 1 }
-  validates :prefecture_code_id, numericality: { other_than: 1 }
-  validates :preparation_day_id, numericality: { other_than: 1 }
+  with_options numericality: { other_than: 1 }  do
+    validates :category_id
+    validates :condition_id
+    validates :postage_payer_id
+    validates :prefecture_code_id
+    validates :preparation_day_id
+  end
 
   belongs_to :user
   has_one_attached :image

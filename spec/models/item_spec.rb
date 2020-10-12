@@ -102,6 +102,13 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid. Input the range of 300 to 9999999 yen.")
       end
+
+      it 'priceが販売価格は半角数字以外であれば保存ができないこと' do
+        @item.price = '４００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid. Input the range of 300 to 9999999 yen.")
+      end
+
     end
   end
 end
