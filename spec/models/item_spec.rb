@@ -91,6 +91,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Preparation day must be other than 1")
       end
 
+      it 'priceが空の場合保存ができないこと' do
+        @item.price = ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid. Input the range of 300 to 9999999 yen.")
+      end
+
       it 'prceが¥300以下の場合保存ができないこと' do
         @item.price = 200
         @item.valid?
