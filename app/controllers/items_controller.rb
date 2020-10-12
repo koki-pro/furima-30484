@@ -20,18 +20,15 @@ class ItemsController < ApplicationController
   end
 
   def show
-    set_item
   end
 
   def edit
-    set_item
     unless @item.user == current_user
       redirect_to action: :index 
     end
   end
 
   def update
-    set_item
     if @item.update(item_params)
       redirect_to root_path
     else
