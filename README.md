@@ -57,7 +57,7 @@
 | post_code          | string      | null: false                    |
 | prefecture_code_id | integer     | null: false                    |
 | city               | string      | null: false                    |
-| destination        | string      | null: false
+| house_number       | string      | null: false
 | building_name      | string      |                                |
 | phone_number       | string      | null: false                    |
 | purchase           | preferences | null: false, foreign_key: true |
