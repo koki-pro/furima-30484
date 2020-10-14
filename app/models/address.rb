@@ -3,7 +3,7 @@ class Address < ApplicationRecord
     validates :post_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'は、数字3桁＋ハイフン（-）＋数字4桁の形式で入力してください' }
     validates :prefecture_code
     validates :city
-    validates :Address
+    validates :house_number
     validates :building_name
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'は、ハイフンは使用せず数字は１０桁または１１桁で入力してください' }
   end
