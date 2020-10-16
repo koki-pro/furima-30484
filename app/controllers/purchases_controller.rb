@@ -1,7 +1,9 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_items, only: [:index, :create]
 
   def index
+    redirect_to root_path if  @items.purchase != nil || current_user == @items.user
     @purchase_address = PurchaseAddress.new
   end
 
@@ -34,4 +36,5 @@ class PurchasesController < ApplicationController
         currency: 'jpy'
       )
   end
+
 end
