@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :set_items, only: [:index]
+  before_action :set_items, only: [:index, :create]
 
   def index
     @purchase_address = PurchaseAddress.new
@@ -10,7 +10,7 @@ class PurchasesController < ApplicationController
     if @purchase_address.valid?
       pay_item
       @purchase_address.save
-      redirect_to 'items/index' 
+      return redirect_to root_path
     else
       render :index
     end
@@ -23,13 +23,13 @@ class PurchasesController < ApplicationController
   end
 
   def address_params
-    params.require(:purchase_address).permit(:post_code, :prefecture_code_id, :city, :house_number, :building_name, :phone_number).merge(token: params[:token])
+    params.require(:purchase_address).permit(:post_code, :prefecture_code_id, :city, :house_number, :building_name, :phone_number).merge(token: params[:token], user_id: current_user.id, item_id: params[:item_id])
   end
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  
       Payjp::Charge.create(
-        amount: @item.price,
+        amount: @items.price,
         card: address_params[:token],
         currency: 'jpy'
       )
