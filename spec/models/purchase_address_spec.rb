@@ -34,6 +34,7 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.building_name = nil
         expect(@purchase_address).to be_valid
       end
+
     end
 
     context '購入情報が保存されない時' do
